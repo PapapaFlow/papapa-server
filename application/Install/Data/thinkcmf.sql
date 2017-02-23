@@ -660,7 +660,7 @@ CREATE TABLE IF NOT EXISTS `cmf_posts` (
   `post_hits` int(11) DEFAULT '0' COMMENT 'post点击数，查看数',
   `post_like` int(11) DEFAULT '0' COMMENT 'post赞数',
   `istop` tinyint(1) NOT NULL DEFAULT '0' COMMENT '置顶 1置顶； 0不置顶',
-  `recommended` tinyint(1) NOT NULL DEFAULT '0' COMMENT '推荐 1推荐 0不推荐'
+  `recommended` tinyint(1) NOT NULL DEFAULT '0' COMMENT '推荐 1推荐 0不推荐',
   `spider_host_page_id` bigint(20) unsigned NOT NULL DEFAULT 0,
   `item_type` int(2) DEFAULT '0' COMMENT '文章类型 0 默认 1 图片 2 视频',
   `original_content` longtext COMMENT 'post内容',
