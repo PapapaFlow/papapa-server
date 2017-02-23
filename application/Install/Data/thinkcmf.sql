@@ -840,25 +840,36 @@ CREATE TABLE IF NOT EXISTS `cmf_user_favorites` (
 -- ----------------------------
 DROP TABLE IF EXISTS `cmf_spider_host`;
 CREATE TABLE `cmf_spider_host` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL,
   `name` varchar(200) DEFAULT '' COMMENT 'host 名称',
   `url` varchar(200) DEFAULT '' COMMENT 'host url地址'
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '爬虫Host表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='爬虫Host表';
 
 -- ----------------------------
 -- Table structure for `cmf_spider_host_page`
 -- ----------------------------
 DROP TABLE IF EXISTS `cmf_spider_host_page`;
 CREATE TABLE `cmf_spider_host_page` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL,
   `host_id` bigint(20) unsigned NOT NULL DEFAULT '0',
   `url` varchar(200) DEFAULT '',
-  `status` int(2) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`),
-  KEY `host_id` (`host_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT '爬虫文章表';
+  `status` int(2) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='爬虫文章表';
 
+
+ALTER TABLE `cmf_spider_host`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `cmf_spider_host_page`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `host_id` (`host_id`),
+  ADD UNIQUE KEY `url` (`url`);
+
+ALTER TABLE `cmf_spider_host`
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'host id';
+
+ALTER TABLE `cmf_spider_host_page`
+  MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '页面id';
 --
 -- Indexes for dumped tables
 --
