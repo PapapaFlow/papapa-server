@@ -841,8 +841,8 @@ CREATE TABLE IF NOT EXISTS `cmf_user_favorites` (
 DROP TABLE IF EXISTS `cmf_spider_host`;
 CREATE TABLE `cmf_spider_host` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) DEFAULT '' COMMENT='host 名称',
-  `url` varchar(200) DEFAULT '' COMMENT='host url地址'
+  `name` varchar(200) DEFAULT '' COMMENT 'host 名称',
+  `url` varchar(200) DEFAULT '' COMMENT 'host url地址'
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='爬虫Host表';
 
