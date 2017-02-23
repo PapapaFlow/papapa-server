@@ -661,6 +661,9 @@ CREATE TABLE IF NOT EXISTS `cmf_posts` (
   `post_like` int(11) DEFAULT '0' COMMENT 'post赞数',
   `istop` tinyint(1) NOT NULL DEFAULT '0' COMMENT '置顶 1置顶； 0不置顶',
   `recommended` tinyint(1) NOT NULL DEFAULT '0' COMMENT '推荐 1推荐 0不推荐'
+  `spider_host_page_id` bigint(20) unsigned NOT NULL DEFAULT 0,
+  `item_type` int(2) DEFAULT '0' COMMENT '文章类型 0 默认 1 图片 2 视频',
+  `original_content` longtext COMMENT 'post内容',
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='Portal文章表';
 
 
@@ -829,6 +832,32 @@ CREATE TABLE IF NOT EXISTS `cmf_user_favorites` (
   `object_id` int(11) DEFAULT NULL COMMENT '收藏内容原来的主键id',
   `createtime` int(11) DEFAULT NULL COMMENT '收藏时间'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户收藏表';
+
+
+-- 爬虫的数据库
+-- ----------------------------
+-- Table structure for `cmf_spider_host`
+-- ----------------------------
+DROP TABLE IF EXISTS `cmf_spider_host`;
+CREATE TABLE `cmf_spider_host` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) DEFAULT '' COMMENT='host 名称',
+  `url` varchar(200) DEFAULT '' COMMENT='host url地址'
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='爬虫Host表';
+
+-- ----------------------------
+-- Table structure for `cmf_spider_host_page`
+-- ----------------------------
+DROP TABLE IF EXISTS `cmf_spider_host_page`;
+CREATE TABLE `cmf_spider_host_page` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `host_id` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `url` varchar(200) DEFAULT '',
+  `status` int(2) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `host_id` (`host_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='爬虫文章表';
 
 --
 -- Indexes for dumped tables
